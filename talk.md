@@ -13,7 +13,7 @@ class: center, middle, inverse
 .date[13 June 2019, Telluride]
 
 .footnote[[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licensed.
-Browse slides at [http://tinyurl.com/talk-telluride](http://tinyurl.com/talk-telluride)]
+Browse slides at [http://tinyurl.com/talk-lille](http://tinyurl.com/talk-lille)]
 
 ???
 
@@ -439,9 +439,9 @@ template: inverse
 
 Slideshow created using [remark] and served using [cicero]
 
-Slides available on [GitHub](https://github.com/robertodr/talk-telluride)
+Slides available on [GitHub](https://github.com/robertodr/talk-lille)
 
-Browse slides at [http://tinyurl.com/talk-telluride](http://tinyurl.com/talk-telluride)
+Browse slides at [http://tinyurl.com/talk-lille](http://tinyurl.com/talk-lille)
 
 [remark]: https://github.com/gnab/remark
 [cicero]: https://github.com/bast/cicero
