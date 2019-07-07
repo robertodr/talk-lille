@@ -19,20 +19,9 @@ Browse slides at [http://tinyurl.com/talk-lille](http://tinyurl.com/talk-lille)]
 
 ???
 
----
-layout: false
-
-.left-column[
-## Outline
-]
-.right-column[
-#### Coupled cluster theory
-#### The diagrammatic approach
-#### Stochastic coupled cluster
-#### Bringing it all together
-]
-
-???
+A whirlwind tour of solvation models for the calculation of molecular properties
+in solution, showing how variational formulations can be hugely advantageous.
+I'll conclude by showing recent advances in stochastic methods for CC theory.
 
 ---
 layout: false
@@ -440,6 +429,290 @@ $$`
 
 ???
 
+---
+
+## Solvation in the Relativistic Regime
+
+<p style="text-align:center;"><img src="images/paper-i.png" style="width: 90%"></p>
+<p style="clear: both;">
+
+<p style="text-align:center;"><img src="images/rela-mep.png" style="width: 80%"></p>
+<p style="clear: both;">
+
+???
+
+Attacking the Hamiltonian axis
+
+---
+
+## Relativity and Solvation: EPR and pNMR parameters
+
+<p style="text-align:left;"><img src="images/paper-iv.png" style="width: 110%"></p>
+<p style="clear: both;">
+
+`$$
+\begin{align}
+g_{uv}   = \frac{2c} {\langle \tilde{S}_v \rangle} \, \mathrm{ Tr} \left\{\mathbf{\Lambda}_{B_u} \mathbf{D}^{ (J_v)} \right\},
+\quad&\quad
+  \left(\mathbf{\Lambda}_{B_u}\right)_{\lambda\tau} = \frac{1}{2}
+  \left\langle
+       \mathbf{X}_\lambda |
+       \left( \mathbf{r}_{G} \times \mathbf{\alpha} \right)_u
+       |
+       \mathbf{X}_\tau
+  \right\rangle.
+\\
+A^M_{uv} = \frac{1} {\langle \tilde{S}_v \rangle} \,
+           \mathrm{Tr} \left\{\mathbf{\Lambda}_{I^M_u} \mathbf{D}^{(J_v)}\right\},
+\quad&\quad
+\left(\mathbf{\Lambda}^{\mathrm{PN}}_{I^M_u}\right)_{\lambda\tau}
+    = \gamma^M
+    \left\langle\mathbf{X}_\lambda
+       \left|
+          \left(
+          \frac{\mathbf{r}_{M} \times \mathbf{\alpha}}{r^{3}_{M}}
+          \right)_u
+       \right|
+       \mathbf{X}_\tau
+    \right\rangle
+\\
+\delta_M^\mathrm{para} &= \frac{\mu_e}{
+  12\gamma^MkT} \,\text{Tr} \left( \mathbf{g}\mathbf{A}^\mathrm{T}_M \right)
+\end{align}
+$$`
+
+???
+
+- We want properties
+- Expectation values
+- Particularly sensitive to the environment
+
+---
+
+## Relativity and Solvation: EPR and pNMR parameters
+
+<p style="text-align:center;"><img src="images/pNMR-tab3.png" style="width: 100%"></p>
+<p style="clear: both;">
+
+???
+
+---
+
+## Arbitrary Order Molecular Response Properties in Solution
+
+<div class="imageWrapper">
+  <img class="overlayImage" src="images/pcm_openrsp.png" style="width: 90%" align="middle">
+--
+  <img class="overlayImage" src="images/paper-v.png" style="width: 110%" align="left">
+</div>
+
+---
+
+## Perturbed Quantum/Classical Polarizable SCF Energy Functional.red[<sup>8</sup>]
+
+- Energy functional in \\(\mathbf{C}\\)-representation:
+`$$
+\tilde{G}(\tilde{\mathbf{C}}, \color{Red}{\tilde{\mathrm{p}}}, t) =
+\tilde{E}(\tilde{\mathbf{C}}, t) +
+\frac{1}{2} \color{Red}{\tilde{\mathrm{p}}} \color{Green}{\mathbb{V}} \color{Red}{\tilde{\mathrm{p}}}+
+\color{Blue}{\tilde{\mathrm{s}}}(\tilde{\mathbf{C}}) \color{Red}{\tilde{\mathrm{p}}}
+$$`
+- Quasienergy in \\(\mathbf{C}\\)-representation:
+`$$
+\tilde{Q}(\tilde{\mathbf{C}}, \color{Red}{\tilde{\mathrm{p}}}, t) =
+\tilde{G}(\tilde{\mathbf{C}}, \color{Red}{\tilde{\mathrm{p}}}, t) - \mathrm{i}\sum_I \langle \tilde{\phi}_I| \dot{\tilde{\phi}}_I \rangle
+$$`
+- Quasienergy Lagrangian in \\(\mathbf{C}\\)-representation:
+`$$
+\tilde{L}(\tilde{\mathbf{C}}, \color{Red}{\tilde{\mathrm{p}}}, \tilde{\mathbf{\lambda}}, t) =
+\tilde{Q}(\tilde{\mathbf{C}}, \color{Red}{\tilde{\mathrm{p}}}, t) - \sum_{IJ}\tilde{\lambda}_{JI}(\langle \tilde{\phi}_I|\tilde{\phi}_J \rangle - \delta_{IJ})
+$$`
+
+.footnote-cite[.red[<sup>8</sup>] Thorvaldsen, A. J.; Ruud, K. _et al._, _J. Chem. Phys._ (2008), __129__, 214108]
+
+???
+
+---
+
+**Variational parameters \\(\tilde{\mathbf{C}}\\), \\(\tilde{\mathrm{p}}\\), \\(\tilde{\mathbf{\lambda}}\\)**
+
+`$$
+\begin{align}
+  \tilde{\mathbf{F}}\tilde{\mathbf{C}}\mathbf{\rho}
+  -\mathrm{i}(\tilde{\mathbf{R}}\tilde{\mathbf{C}}+\tilde{\mathbf{S}}\dot{\tilde{\mathbf{C}}})\mathbf{\rho} -
+  \tilde{\mathbf{S}}\tilde{\mathbf{C}}\mathbf{\rho}\tilde{\mathbf{\lambda}}\mathbf{\rho} & = 0
+  \quad\quad\text{TDSCF} \\
+  \mathbf{\rho}\tilde{\mathbf{C}}^\dagger \tilde{\mathbf{S}}\tilde{\mathbf{C}}\mathbf{\rho}
+  & = \mathbf{\rho} \quad\quad\text{Idempotency} \\
+  \color{Green}{\mathbb{V}}\color{Red}{\mathrm{p}} + \color{Blue}{\mathrm{s}} & = 0 \quad\quad\text{Classical polarization}
+\end{align}
+$$`
+
+`$$
+\tilde{\mathbf{F}}
+= \tilde{\mathbf{F}}^\mathrm{vac} + \color{Red}{\tilde{\mathrm{p}}}\color{Blue}{\tilde{\mathrm{s}}}
+$$`
+
+**Generalized KS energy, \\(\mathbf{D}\\)-representation**
+
+`$$
+\tilde{\mathcal{G}}
+\overset{\mathrm{tr}}{=}
+(\tilde{\mathbf{h}} + \tilde{\mathbf{V}}^{t} + \frac{1}{2}\tilde{\mathbf{G}}^{\gamma}(\tilde{\mathbf{D}}) - \frac{\mathrm{i}}{2}\tilde{\mathbf{T}} )\tilde{\mathbf{D}} +
+ \tilde{E}_\mathrm{xc}[\tilde{\rho}(\tilde{\mathbf{D}})] + h_\mathrm{nuc} +
+ \frac{1}{2} \color{Red}{\tilde{\mathrm{p}}} \color{Green}{\mathbb{V}} \color{Red}{\tilde{\mathrm{p}}} + \color{Blue}{\tilde{\mathrm{s}}} \color{Red}{\tilde{\mathrm{p}}}\tilde{\mathbf{D}}
+$$`
+
+**Time-averaged quasienergy derivative**
+
+`
+$$
+ \tilde{L}^a(\tilde{\mathbf{D}}, \color{Red}{\tilde{\mathrm{p}}}, t)
+ \overset{\lbrace\text{Tr}\rbrace_T}{=}
+ \tilde{\mathcal{G}}^{00,a} - \tilde{\mathbf{S}}^a\tilde{\mathbf{W}}
+$$
+`
+???
+
+---
+
+## Exploiting Our Variational Advantages
+
+`
+$$
+ \tilde{L}^a(\tilde{\mathbf{D}}, \color{Red}{\tilde{\mathrm{p}}}, t)
+ \overset{\lbrace\text{Tr}\rbrace_T}{=}
+ \tilde{\mathcal{G}}^{00,a} - \tilde{\mathbf{S}}^a\tilde{\mathbf{W}}
+$$
+`
+
+**Fixed cavity approximation**
+`
+$$
+\tilde{\mathcal{G}}^{00,a}(\tilde{\mathbf{D}}, \color{Red}{\tilde{\mathrm{p}}}, t)
+\overset{\text{Tr}}{=}
+(\tilde{\mathbf{h}}^a + \tilde{\mathbf{V}}^{t,a} +
+\frac{1}{2}\tilde{\mathbf{G}}^{\gamma, a}(\tilde{\mathbf{D}}) +
+\tilde{\mathbf{F}}^{\Omega_a}_\mathrm{xc}
+-\frac{\mathrm{i}}{2}\tilde{\mathbf{T}}^a)\tilde{\mathbf{D}} + h_\mathrm{nuc}^a
++\color{Red}{\tilde{\mathrm{p}}}\color{Blue}{\tilde{\mathbf{\mathrm{s}}}^a}\tilde{\mathbf{D}}
+$$
+`
+
+**Response functions**
+`
+$$
+\langle\langle A; B \rangle\rangle_{\omega_b} =
+    L^{ab}
+ \overset{\lbrace\text{Tr}\rbrace_T}{=}
+\mathcal{G}^{00,ab}
++\mathcal{G}^{10,a}\mathbf{D}^{b}
++\mathcal{G}^{01,a}\color{Red}{\mathrm{p}^{b}}
+-\mathbf{S}^{ab}\mathbf{W} - \mathbf{S}^{a}\mathbf{W}^{b}
+$$
+`
+
+**PCM response equation**
+`
+$$
+\begin{alignat*}{2}
+  \color{Green}{\mathbb{V}}\color{SkyBlue}{\mathrm{p}_\mathrm{H}^{b_N}}
+  +\text{Tr}\,\color{Blue}{\mathrm{s}}\color{SkyBlue}{\mathbf{D}_\mathrm{H}^{b_N}} = 0
+  \quad&\quad
+  \color{Green}{\mathbb{V}}\color{Orange}{\mathrm{p}_\mathrm{P}^{b_N}}
+  +\text{Tr}\,\color{Blue}{\mathrm{s}}\color{Orange}{\mathbf{D}_\mathrm{P}^{b_N}} =
+  \color{Orange}{\mathbb{S}^{(n-1)}_\omega}
+\end{alignat*}
+$$
+`
+
+**\\(N\\)-the order response equations**
+`
+$$
+\bbox[SkyBlue, 5pt]{\left[\mathbf{E}^{[2]} - \omega_{b_N}\mathbf{S}^{[2]} \right]
+\mathbf{X}^{b_N}}
+=\bbox[Orange, 5pt]{\mathbf{M}_\mathrm{RHS}^{b_N}}
+$$
+`
+
+---
+
+## Fluctuating Charge Model: One- and Two-Photon Absorption in Water
+
+`
+$$
+\begin{aligned}
+  F[\mathbf{q},\boldsymbol{\lambda}]
+  &=
+\sum_{\alpha,i} q_{\alpha i}\chi_{\alpha i} + \frac{1}{2}\sum_{\alpha,i} \sum_{\beta, j}q_{\alpha i} J_{\alpha i,\beta j}q_{\beta j} + \sum_{\alpha}\lambda_{\alpha} \left(\sum_{i} q_{\alpha i} - Q_{\alpha}\right) \\
+  &= \mathbf{q}^\dagger\boldsymbol{\chi} + \frac{1}{2}\mathbf{q}^\dagger\mathbf{J}\mathbf{q} + \mathbf{q}^{\dagger}\boldsymbol{\lambda}
+\end{aligned}
+$$
+`
+
+- Classical sites with electronegativities (\\(\chi\\)) and hardnesses (\\(\eta\\))
+- Multipliers (\\(\lambda\\)) to ensure charge conservation
+- Polarization kernel:
+
+`
+$$
+J_{\alpha i, \beta j} = \eta_{\alpha i}\delta_{\alpha i, \beta j} + \frac{\eta_{\alpha i, \beta j}}{\sqrt{1 + \eta_{\alpha i, \beta j}^{2}r^{2}_{\alpha i, \beta j}}}(1 - \delta_{\alpha i, \beta j})
+$$
+`
+
+--
+
+<p style="text-align:center;"><img src="images/paper-fq.png" style="width: 100%"></p>
+<p style="clear: both;">
+
+???
+
+- Electronegativity equalization principle.
+- Only parametrized for water.
+- Coupling with QM same as continuum, as it only requires the MEP.
+
+---
+class: split-50-50
+
+.column[
+<p style="text-align:center;"><img src="images/OPA-methods-multiplot.png" style="width: 100%"></p>
+]
+.column[
+<p style="text-align:center;"><img src="images/TPA-methods-multiplot-gaus-range.png" style="width: 50%"></p>
+]
+<p style="clear: both;">
+
+<p style="text-align:center;"><img src="images/R6G_angle_label.png" style="width: 30%"></p>
+<p style="clear: both;">
+
+???
+
+- OPA to the left, TPA to the right.
+
+- Rhodamine 6G is a promising 2-photon dye. The `$S_{0} \rightarrow S_{2}$` transition is dark in OPA, but allowed in TPA.
+- \\(25~\AA\\) sphere defines the MM region.
+- Average over 100 snapshots.
+- We can reproduce deltas of excitation energies for OPA. Absolute it's more difficult as S3 has significant CT character.
+- For TPA comparison with experiment is challenging, as experiments are all over the place.
+
+---
+class: split-50-50
+
+## PCM: Multiphoton Absorption in Solution
+
+.column[
+<p style="text-align:center;"><img src="images/PDNB_energy.png" style="width: 100%"></p>
+<p style="clear: both;">
+
+- Nonequilibrium solvation
+- Odd-order MPA
+- Even-order MPA
+]
+.column[
+<p style="text-align:center;"><img src="images/PDNB_MPA.png" style="width: 50%"></p>
+<p style="clear: both;">
+]
+
 
 ---
 class: split-50-50
@@ -674,7 +947,7 @@ class: split-50-50
 ---
 layout: false
 
-## From deterministic to stochastic.red[<sup>1</sup>]
+## From deterministic to stochastic.red[<sup>7</sup>]
 
 - Finite-different imaginary-time propagation
 
@@ -703,7 +976,7 @@ t_{\mathbf{n}}(\tau+\delta\tau) = t_{\mathbf{n}}(\tau) - \delta\tau
 $$
 `
 
-.footnote-cite[.red[<sup>1</sup>] Thom, A. J. W. _Phys. Rev. Lett._ (2010), **105**, 263004]
+.footnote-cite[.red[<sup>7</sup>] Thom, A. J. W. _Phys. Rev. Lett._ (2010), **105**, 263004]
 
 ???
 
@@ -728,7 +1001,7 @@ still doing that part of the work and using memory for it.
 ---
 ## Learning new tricks from an old dog
 
-- Imaginary-time Schrödinger equation.red[<sup>2</sup>]
+- Imaginary-time Schrödinger equation.red[<sup>8</sup>]
 `
 $$
 \frac{\mathrm{d}}{\mathrm{d}\tau} | \mathrm{CC} \rangle = -H | \mathrm{CC} \rangle
@@ -758,7 +1031,7 @@ $$
 enforce connectedness by using diagrammatic techniques.
 
 ---
-## Diagrammatic Coupled Cluster Monte Carlo.red[<sup>3</sup>]
+## Diagrammatic Coupled Cluster Monte Carlo
 
 `
 $$
@@ -766,6 +1039,7 @@ t_{\mathbf{n}}(\tau+\delta\tau) = t_{\mathbf{n}}(\tau) - \delta\tau\textcolor{re
 $$
 `
 
+<div class="imageWrapper">
 ### Idea and Plan
 
 - The _residual_ integral `$\textcolor{red}{\langle D_{\mathbf{n}} | \bar{H}_{\mathrm{N}}(\tau) | D_\mathbf{0} \rangle} = \sum \mathrm{diagrams}$`
@@ -774,6 +1048,9 @@ $$
 
 <p style="text-align:center;"><img src="images/propagate.png" style="width: 70%"></p>
 <p style="clear: both;">
+--
+  <img class="overlayImage" src="images/paper-diagccmc.png" style="width: 110%" align="left">
+</div>
 
 ???
 
@@ -781,8 +1058,6 @@ $$
 integral by building diagrams on the fly
 - Stochastic rounding ensures sparse representation.
 - Additionally this can be interpreted on par with deterministic approaches!
-
-.footnote-cite[.red[<sup>3</sup>] Scott, C. J. C.; Di Remigio, R.; Crawford, T. D.; Thom, A. J. W. _J. Phys. Chem. Lett._ (2019), **10**, 925]
 
 ---
 
@@ -810,9 +1085,30 @@ integral by building diagrams on the fly
 <p style="clear: both;">
 
 ---
+class: split-50-50
+
 ## Acknowledgements
 
-<p style="text-align:center;"><img src="images/thanks.png" style="width: 100%"></p>
+.column[
+__Luca Frediani__ .cite[Hylleraas Centre, University of Tromsø]
+
+__T. Daniel Crawford__ .cite[Virginia Tech]
+
+__Charles J. C. Scott__ .cite[Univesity of Cambridge]
+
+__Michal Repisky__ .cite[Hylleraas Centre, University of Tromsø]
+]
+.column[
+__Filippo Lipparini__ .cite[Università di Pisa]
+
+__Radovan Bast__ .cite[University of Tromsø]
+
+__Alex J. W. Thom__ .cite[Univesity of Cambridge]
+
+__Lori A. Burns__ .cite[Georgia Tech]
+]
+
+<p style="text-align:center;"><img src="images/NFR_merke_horisontal_oransje_eng.png" style="width: 60%"></p>
 <p style="clear: both;">
 
 ---
