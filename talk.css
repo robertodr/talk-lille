@@ -35,9 +35,9 @@ a {
   height: 92%;
   float: left;
 }
-  .left-column h2:last-of-type, .left-column h3:last-child {
-    color: #000;
-  }
+.left-column h2:last-of-type, .left-column h3:last-child {
+  color: #000;
+}
 .right-column {
   width: 75%;
   float: right;
@@ -127,7 +127,7 @@ a {
 .split-60-40 .column:first-of-type {
     width: 60%;
 }
-_split-60-40 .column:last-of-type {
+.split-60-40 .column:last-of-type {
     width: 40%;
 }
 .split-70-30 .column:first-of-type {
@@ -135,11 +135,6 @@ _split-60-40 .column:last-of-type {
 }
 .split-70-30 .column:last-of-type {
     width: 30%;
-}
-
-.column {
-    float: left;
-    width: 50%;
 }
 
 /* Clear floats after the columns */
